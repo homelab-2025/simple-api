@@ -1,4 +1,4 @@
-.PHONY: run-dev run-prod test
+.PHONY: run-dev run-prod tests
 .DEFAULT_GOAL := run-dev
 
 HOST = '0.0.0.0'
@@ -11,5 +11,4 @@ run-prod:
 	gunicorn -k uvicorn.workers.UvicornWorker app.main:app --workers 4 --bind ${HOST}:${PORT}
 
 tests:
-	coverage run -m pytest
-	coverage report -m
+	tox
