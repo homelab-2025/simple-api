@@ -8,7 +8,7 @@ run-dev:
 	uvicorn src.main:app --reload --host ${HOST} --port ${PORT} --log-config log_conf.json
 
 run-prod:
-	gunicorn -k uvicorn.workers.UvicornWorker src.main:app --workers 4 --bind ${HOST}:${PORT}
+	gunicorn -c gunicorn_config.py -k uvicorn.workers.UvicornWorker src.main:app --workers 4 --bind ${HOST}:${PORT} --log-config-json log_conf.json
 
 tests:
 	tox
