@@ -1,2 +1,6 @@
 [run]
-omit = tests/*
+omit =
+    */tests/*
+    __init__.py
+    .venv/*
+    gunicorn_config.py
