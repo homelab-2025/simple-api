@@ -29,9 +29,7 @@ git clone https://gitlab.com/homelab-2025/simple-api.git
 cd simple-api
 ```
 
-2. Comment the makefile variables that do not correspond to your system
-
-3. Then to create a virtual environment and to install packages, type in your terminal:
+2. Then to create a virtual environment and to install packages, type in your terminal:
 
 ```bash
 make install

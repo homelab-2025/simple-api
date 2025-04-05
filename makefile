@@ -5,15 +5,15 @@ HOST = '0.0.0.0'
 PORT = '8000'
 VENV=.venv
 
-#windows
-PYTHON=python 
-FOLDER=Scripts
-PIP=pip
-
-#linux
-#PYTHON=python3
-#FOLDER=bin
-#PIP=pip3
+ifeq ($(OS),Windows_NT)
+    PYTHON := python
+    FOLDER := Scripts
+    PIP := pip
+else
+    PYTHON := python3
+    FOLDER := bin
+    PIP := pip3
+endif
 
 
 $(VENV):
@@ -26,7 +26,7 @@ run-dev:
 	$(VENV)/$(FOLDER)/uvicorn src.main:app --reload --host ${HOST} --port ${PORT} --log-config log_conf.json
 
 run-prod:
-	$(VENV)/$(FOLDER)/gunicorn -c gunicorn_config.py -k uvicorn.workers.UvicornWorker src.main:app --workers 4 --bind ${HOST}:${PORT} --log-config-json log_conf.json
+	$(VENV)/$(FOLDER)/gunicorn -c gunicorn_config.py
 
 tests:
 	$(VENV)/$(FOLDER)/tox
