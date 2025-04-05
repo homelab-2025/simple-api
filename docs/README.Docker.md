@@ -1,3 +1,12 @@
+## Docker
+
+[README](../README.md)
+
+### Prerequisites
+
+1. Enable virtualization on your machine
+2. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
 ### Building and running your application
 
 When you're ready, start your application by running:
