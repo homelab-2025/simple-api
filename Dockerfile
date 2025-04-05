@@ -7,7 +7,7 @@
 # Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
 
 ARG PYTHON_VERSION=3.11.0
-FROM python:${PYTHON_VERSION}-slim as base
+FROM python:${PYTHON_VERSION}-slim AS base
 
 # Prevents Python from writing pyc files.
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -44,11 +44,5 @@ USER appuser
 # Copy the source code into the container.
 COPY . .
 
-# Expose the port that the application listens on
-# By default it expose port 8000 but if the env var APP_PORT is set, it will expose the defined port.
-ARG DEFAULT_PORT=8000
-ENV APP_PORT=${DEFAULT_PORT}
-EXPOSE ${APP_PORT}
-
 # Run the application.
-CMD gunicorn -c gunicorn_config.py -k uvicorn.workers.UvicornWorker src.main:app --workers 4 --bind 0.0.0.0:${APP_PORT} --log-config-json log_conf.json
+CMD ["gunicorn", "-c", "gunicorn_config.py"]
