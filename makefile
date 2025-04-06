@@ -1,25 +1,27 @@
-.PHONY: run-dev run-prod tests
+.PHONY: venv install run-dev run-prod tests clean
 .DEFAULT_GOAL := run-dev
 
 HOST = '0.0.0.0'
 PORT = '8000'
 VENV=.venv
 
-ifeq ($(OS),Windows_NT)
-    PYTHON := python
-    FOLDER := Scripts
-    PIP := pip
+ifdef OS
+	PYTHON := python
+	FOLDER := Scripts
+	PIP := pip
+	RM := rmdir /S /Q
 else
-    PYTHON := python3
-    FOLDER := bin
-    PIP := pip3
+	PYTHON := python3
+	FOLDER := bin
+	PIP := pip3
+	RM := rm -rf
 endif
 
 
-$(VENV):
+venv:
 	$(PYTHON) -m venv $(VENV)
 
-install: $(VENV)
+install: venv
 	$(VENV)/$(FOLDER)/$(PIP) install -r requirements.txt
 	
 run-dev:
@@ -30,3 +32,6 @@ run-prod:
 
 tests:
 	$(VENV)/$(FOLDER)/tox
+
+clean:
+	$(RM) $(VENV)
