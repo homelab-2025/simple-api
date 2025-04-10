@@ -12,12 +12,6 @@ cache:
     - .cache/pip
     - .tox/
 
-before_script:
-  - python --version ; pip --version  # For debugging
-  - pip install virtualenv
-  - virtualenv venv
-  - source venv/bin/activate
-
 test:
   stage: test
   script:
@@ -41,8 +35,7 @@ sonarcloud:
     paths:
       - .sonar/cache
   script:
+    - if [ -z "$SONAR_TOKEN" ]; then echo "SonarCloud is not configured for this repo."; exit 0; fi
     - sonar-scanner
   only:
     - main
-  variables:
-    SONAR_TOKEN: $SONAR_TOKEN
