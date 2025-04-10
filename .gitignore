@@ -5,3 +5,4 @@ __pycache__/
 .tox/
 htmlcov
 .coverage
+coverage.xml
