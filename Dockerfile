@@ -42,7 +42,9 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 USER appuser
 
 # Copy the source code into the container.
-COPY . .
+COPY gunicorn_config.py .
+
+COPY src src
 
 # Run the application.
 CMD ["gunicorn", "-c", "gunicorn_config.py"]
