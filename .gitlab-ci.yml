@@ -36,6 +36,6 @@ sonarcloud:
       - .sonar/cache
   script:
     - if [ -z "$SONAR_TOKEN" ]; then echo "SonarCloud is not configured for this repo."; exit 0; fi
-    - sonar-scanner
+    - sonar-scanner -Dproject.settings=sonar-config/sonar-project.properties.gitlab
   only:
     - main
