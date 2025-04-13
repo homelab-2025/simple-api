@@ -7,7 +7,8 @@ PORT = os.environ.get("PORT", "8000")
 
 wsgi_app = "src.main:app"
 worker_class = "uvicorn.workers.UvicornWorker"
-workers = multiprocessing.cpu_count() * 2 + 1
+# workers = multiprocessing.cpu_count() * 2 + 1
+workers = 4
 bind = f"{HOST}:{PORT}"
 accesslog = "-"  # Print access logs on standard output
 errorlog = "-"  # Print error logs on standard output

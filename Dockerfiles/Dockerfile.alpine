@@ -1,0 +1,14 @@
+FROM python:3.13-alpine
+
+WORKDIR /app
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+RUN pip install --no-cache-dir fastapi uvicorn gunicorn
+
+COPY gunicorn_config.py .
+
+COPY src src
+
+CMD ["gunicorn", "-c", "gunicorn_config.py"]

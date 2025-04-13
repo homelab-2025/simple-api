@@ -11,6 +11,8 @@ services:
   server:
     build:
       context: .
+      # dockerfile: Dockerfiles/Dockerfile.debian
+      dockerfile: Dockerfiles/Dockerfile.alpine
     ports:
       - 8000:8000
 
