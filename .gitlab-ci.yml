@@ -1,19 +1,16 @@
-image: python:latest
-
 stages:
   - test
   - sonarcloud
 
-variables:
-  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
-
-cache:
-  paths:
-    - .cache/pip
-    - .tox/
-
 test:
   stage: test
+  variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  image: python:latest
+  cache:
+    paths:
+      - .cache/pip
+      - .tox/
   script:
     - pip install tox
     - tox -e py
@@ -37,5 +34,3 @@ sonarcloud:
   script:
     - if [ -z "$SONAR_TOKEN" ]; then echo "SonarCloud is not configured for this repo."; exit 0; fi
     - sonar-scanner -Dproject.settings=sonar-config/sonar-project.properties.gitlab
-  only:
-    - main
