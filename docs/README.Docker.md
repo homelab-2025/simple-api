@@ -7,25 +7,21 @@
 1. Enable virtualization on your machine
 2. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-### Building and running your application
+### Building and running the application
 
-When you're ready, start your application by running:
+The running configuration is defined in the `compose.yaml` file.
+
+To run the application using Docker Compose, you can type in a terminal:
 `docker compose up --build`.
 
-Your application will be available at http://localhost:8000.
+The application will be available at http://localhost:8000.
 
 ### Deploying your application to the cloud
 
-First, build your image, e.g.: `docker build -t myapp .`.
-If your cloud uses a different CPU architecture than your development
-machine (e.g., you are on a Mac M1 and your cloud provider is amd64),
-you'll want to build the image for that platform, e.g.:
-`docker build --platform=linux/amd64 -t myapp .`.
+The building configuration is defined in the `docker-bake.hcl` file.
 
-Then, push it to your registry, e.g. `docker push myregistry.com/myapp`.
-
-Consult Docker's [getting started](https://docs.docker.com/go/get-started-sharing/)
-docs for more detail on building and pushing.
-
-### References
-* [Docker's Python guide](https://docs.docker.com/language/python/)
+To push the image of your container to Docker Hub:
+1. First you need to login in Docker Desktop.
+2. Then you need to adapt the configuration file to your needs by changing tags to match the registry, image name and tag needed.
+3. Finally you can build the images and push it to the registry by typing:
+`docker buildx bake --push`
