@@ -4,16 +4,14 @@ stages:
 
 test:
   stage: test
-  variables:
-    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
-  image: python:latest
+  image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
   cache:
     paths:
-      - .cache/pip
-      - .tox/
+      - .venv/
+      - .cache/uv/
   script:
-    - pip install tox
-    - tox -e py
+    - uv sync
+    - uv run tox -e py
   artifacts:
     paths:
       - coverage.xml
