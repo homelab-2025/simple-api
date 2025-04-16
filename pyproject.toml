@@ -1,0 +1,23 @@
+[project]
+name = "simple-api"
+version = "0.1.0"
+description = "Simple API to try out tools"
+readme = "README.md"
+authors = [
+    { name = "Enzo G", email = "gl@enzog.mozmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.12",
+    "gunicorn>=23.0.0",
+    "uvicorn>=0.34.1",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "tox>=4.25.0",
+    "tox-uv>=1.25.0",
+]
