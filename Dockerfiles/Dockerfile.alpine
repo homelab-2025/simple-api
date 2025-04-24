@@ -7,7 +7,7 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
-RUN pip install --no-cache-dir fastapi uvicorn gunicorn
+RUN pip install --no-cache-dir fastapi gunicorn uvicorn
 
 COPY gunicorn_config.py .
 
