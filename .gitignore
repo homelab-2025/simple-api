@@ -3,6 +3,11 @@
 __pycache__/
 .pytest_cache/
 .tox/
+build/
+dist/
+wheels/
+*.py[oc]
+*.egg-info
 htmlcov
 .coverage
 coverage.xml
