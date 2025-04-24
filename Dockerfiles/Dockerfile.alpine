@@ -1,5 +1,7 @@
 FROM ghcr.io/astral-sh/uv:python3.13-alpine
 
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
 WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -12,5 +14,9 @@ RUN uv sync --no-dev
 COPY gunicorn_config.py .
 
 COPY src src
+
+RUN chown -R appuser:appgroup /app
+
+USER appuser
 
 CMD ["uv","run","gunicorn", "-c", "gunicorn_config.py"]
