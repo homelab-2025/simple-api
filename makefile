@@ -1,4 +1,4 @@
-.PHONY: venv install run-dev run-prod tests clean
+.PHONY: install run-dev run-prod tests clean
 .DEFAULT_GOAL := run-dev
 
 HOST = '0.0.0.0'
