@@ -78,7 +78,7 @@ To run the tests, you can use:
 make tests
 ```
 
-This will run tests cases in differents environments using 
+This will run tests cases in differents environments using tox.
 
 [Back to top](#simple-api)
 
